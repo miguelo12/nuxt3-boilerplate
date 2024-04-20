@@ -1,4 +1,3 @@
-import 'reflect-metadata'
 import { useStorage } from '@vueuse/core'
 import type { Singletons } from '@Domain/inversify.config'
 import AuthUseCase from '@Domain/useCases/authUseCase'
