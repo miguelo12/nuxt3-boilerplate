@@ -34,6 +34,7 @@ export default defineNuxtConfig({
       })
     },
     '@nuxt/eslint',
+    '@nuxt/test-utils/module',
   ],
   pinia: {
     storesDirs: ['./src/domain/stores/**'],
@@ -80,6 +81,11 @@ export default defineNuxtConfig({
     },
   },
   typescript: {
+    tsConfig: {
+      compilerOptions: {
+        types: ['vitest/globals'],
+      },
+    },
     typeCheck: false,
   },
 })
