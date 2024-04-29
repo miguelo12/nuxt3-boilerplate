@@ -26,7 +26,7 @@ async function logIn(event: SubmitEventPromise) {
     return
   }
 
-  const messageLogIn = await loginProp.authStore?.logIn(userName.value, password.value)
+  const messageLogIn = await loginProp.authStore?.logIn(toValue(userName), toValue(password))
   loading.value = false
 
   if (!loginProp.authStore?.is_authenticated) {
@@ -42,7 +42,7 @@ function cleanForm() {
 }
 
 function isLoading() {
-  return loading.value
+  return toValue(loading)
 }
 
 defineExpose({ cleanForm, isLoading })
@@ -57,9 +57,10 @@ defineExpose({ cleanForm, isLoading })
       v-model="userName"
       label="Username"
       :rules="[
-        (value) => {
-          if (value) return true;
-          return 'El Username no debe estar vació.';
+        (value: string) => {
+          if (!value) return 'El Username no debe estar vació.'
+          if (!isAlphaNumeric(value)) return 'El Username debe ser alfanumérico.'
+          return true
         },
       ]"
       required
@@ -70,9 +71,9 @@ defineExpose({ cleanForm, isLoading })
       :type="show_pass ? 'text' : 'password'"
       :append-inner-icon="show_pass ? 'mdi-eye' : 'mdi-eye-off'"
       :rules="[
-        (value) => {
-          if (value) return true;
-          return 'El Password no debe estar vació.';
+        (value: string) => {
+          if (!value) return 'El Password no debe estar vació.'
+          return true
         },
       ]"
       required

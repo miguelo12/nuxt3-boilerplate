@@ -2,15 +2,16 @@
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 const srcName: string = 'src'
+const srcProjectName: string = `${__dirname}/${srcName}`
 
 export default defineNuxtConfig({
   ssr: false,
-  srcDir: `${srcName}/presentation/`,
+  srcDir: `${srcName}/presentation`,
   devtools: { enabled: true },
   alias: {
-    '@Data': `../${srcName}/data`,
-    '@Domain': `../${srcName}/domain`,
-    '@Presentation': `../${srcName}/presentation`,
+    '@Data': `${srcProjectName}/data`,
+    '@Domain': `${srcProjectName}/domain`,
+    '@Presentation': `${srcProjectName}/presentation`,
   },
   runtimeConfig: {
     public: {
@@ -19,6 +20,7 @@ export default defineNuxtConfig({
   },
   imports: {
     dirs: [
+      'composables/**',
     ],
   },
   build: {

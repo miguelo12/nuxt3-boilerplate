@@ -59,9 +59,10 @@ defineExpose({ isLoading, cleanForm })
       v-model="userName"
       label="Username"
       :rules="[
-        (value) => {
-          if (value) return true;
-          return 'El Username no debe estar vació.';
+        (value: string) => {
+          if (!value) return 'El Username no debe estar vació.'
+          if (!isAlphaNumeric(value)) return 'El Username puede ser alfanumérico.'
+          return true
         },
       ]"
       required
@@ -72,9 +73,11 @@ defineExpose({ isLoading, cleanForm })
       :type="show_pass ? 'text' : 'password'"
       :append-inner-icon="show_pass ? 'mdi-eye' : 'mdi-eye-off'"
       :rules="[
-        (value) => {
-          if (value) return true;
-          return 'El Password no debe estar vació.';
+        (value: string) => {
+          if (!value) return 'El Password no debe estar vació.'
+          if (value.length >= 6) return 'El Password debe ser mayor o igual a 6 caracteres'
+          if (!isAlphaNumericSpecial(value)) return 'El Password puede ser alfanumérico y !@#*'
+          return true
         },
       ]"
       required
@@ -87,10 +90,9 @@ defineExpose({ isLoading, cleanForm })
       :append-inner-icon="show_pass ? 'mdi-eye' : 'mdi-eye-off'"
       :rules="[
         (value) => {
-          if (value !== password)
-            return 'El password y el Re-Password no es el mismo.';
-          if (value) return true;
-          return 'El Re-Password no debe estar vació.';
+          if (!value) return 'El Re-Password no debe estar vació.'
+          if (value !== password) return 'El password y el Re-Password no es el mismo.'
+          return true
         },
       ]"
       required
