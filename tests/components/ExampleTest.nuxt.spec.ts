@@ -4,6 +4,7 @@ import ExampleTest from '~/components/ExampleTest.vue'
 // Montar componentes para visualizar si se muestra bien los datos
 describe('ExampleTest Component', () => {
   let wrapper: VueWrapper
+
   afterEach(() => {
     wrapper?.unmount()
   })

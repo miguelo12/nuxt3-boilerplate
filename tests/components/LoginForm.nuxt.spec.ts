@@ -59,7 +59,7 @@ describe('LoginForm.vue', async () => {
     await form.trigger('submit')
     expect(wrapper.vm.isLoading()).toBe(true)
 
-    // Espera que cargue las promesas y actualice la vista
+    // Espera que cargue las promesas y actualice la vista (aunque no llame las apis)
     await flushPromises()
     await wrapper.vm.$nextTick()
     expect(wrapper.vm.isLoading()).toBe(false)
