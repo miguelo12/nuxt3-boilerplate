@@ -1,5 +1,4 @@
 import { mountSuspended } from '@nuxt/test-utils/runtime'
-import { expect, it } from 'vitest'
 import AlertDefault from '~/components/alert/AlertDefault.vue'
 
 it('can mount some component', async () => {

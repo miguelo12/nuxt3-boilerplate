@@ -1,8 +1,5 @@
 import { useStorage } from '@vueuse/core'
-import type { Singletons } from '@Domain/inversify.config'
 import AuthUseCase from '@Domain/useCases/authUseCase'
-
-const singletons = useNuxtApp().$Singletons as typeof Singletons
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -12,11 +9,11 @@ export const useAuthStore = defineStore('auth', {
   }),
   actions: {
     async createUser(username: string, password: string) {
-      const authUseCase = singletons.resolve(AuthUseCase)
+      const authUseCase = useNuxtApp().$singletons.resolve(AuthUseCase)
       return await authUseCase.createUser(username, password)
     },
     async logIn(username: string, password: string) {
-      const authUseCase = singletons.resolve(AuthUseCase)
+      const authUseCase = useNuxtApp().$singletons.resolve(AuthUseCase)
       const { data, message } = await authUseCase.logIn(username, password)
 
       if (data && data.token) {
@@ -33,7 +30,7 @@ export const useAuthStore = defineStore('auth', {
       return message
     },
     async logOut() {
-      const authUseCase = singletons.resolve(AuthUseCase)
+      const authUseCase = useNuxtApp().$singletons.resolve(AuthUseCase)
       if (this.token) {
         await authUseCase.logOut(this.token)
       }

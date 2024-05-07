@@ -12,5 +12,10 @@ export default defineVitestConfig({
         },
       },
     },
+    server: {
+      deps: {
+        inline: ['vuetify'],
+      },
+    },
   },
 })

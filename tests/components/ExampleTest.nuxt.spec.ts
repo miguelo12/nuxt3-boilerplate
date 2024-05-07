@@ -1,5 +1,4 @@
 import { mount, type VueWrapper } from '@vue/test-utils'
-import { afterEach, describe, expect, test } from 'vitest'
 import ExampleTest from '~/components/ExampleTest.vue'
 
 // Montar componentes para visualizar si se muestra bien los datos

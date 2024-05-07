@@ -50,12 +50,14 @@ defineExpose({ cleanForm, isLoading })
 
 <template>
   <v-form
+    data-testid="form"
     validate-on="submit lazy"
     @submit.prevent="logIn"
   >
     <v-text-field
       v-model="userName"
       label="Username"
+      data-testid="username"
       :rules="[
         (value: string) => {
           if (!value) return 'El Username no debe estar vació.'
@@ -68,6 +70,7 @@ defineExpose({ cleanForm, isLoading })
     <v-text-field
       v-model="password"
       label="Password"
+      data-testid="password"
       :type="show_pass ? 'text' : 'password'"
       :append-inner-icon="show_pass ? 'mdi-eye' : 'mdi-eye-off'"
       :rules="[
@@ -82,12 +85,14 @@ defineExpose({ cleanForm, isLoading })
     <v-alert
       v-if="message"
       class="mt-4 mb-4"
+      data-testid="alertLogin"
       :type="is_error ? 'warning' : 'success'"
     >
       {{ message }}
     </v-alert>
     <v-btn
       :loading="loading"
+      data-testid="btnLogin"
       class="mt-2"
       text="Iniciar sesión"
       type="submit"

@@ -75,7 +75,7 @@ defineExpose({ isLoading, cleanForm })
       :rules="[
         (value: string) => {
           if (!value) return 'El Password no debe estar vació.'
-          if (value.length >= 6) return 'El Password debe ser mayor o igual a 6 caracteres'
+          if (value.length <= 6) return 'El Password debe ser mayor o igual a 6 caracteres'
           if (!isAlphaNumericSpecial(value)) return 'El Password puede ser alfanumérico y !@#*'
           return true
         },
