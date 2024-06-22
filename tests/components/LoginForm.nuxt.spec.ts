@@ -2,7 +2,8 @@ import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import type { VueWrapper } from '@vue/test-utils'
-import { flushPromises, mount } from '@vue/test-utils'
+import { flushPromises } from '@vue/test-utils'
+import { mountSuspended } from '@nuxt/test-utils/runtime'
 import LoginForm from '~/components/user/LoginForm.vue'
 
 global.ResizeObserver = require('resize-observer-polyfill')
@@ -17,7 +18,7 @@ describe('LoginForm.vue', async () => {
 
   beforeEach(async () => {
     const authStore = useAuthStore()
-    wrapper = mount(LoginForm, {
+    wrapper = await mountSuspended(LoginForm, {
       props: {
         authStore: authStore,
       },
@@ -52,8 +53,8 @@ describe('LoginForm.vue', async () => {
     passwordInput.setValue('123')
 
     // Revisa que las referencias hayan cambiado su valor
-    expect(wrapper.vm.userName).toBe('aaaaaa')
-    expect(wrapper.vm.password).toBe('123')
+    expect(toValue(wrapper.vm.userName)).toBe('aaaaaa')
+    expect(toValue(wrapper.vm.password)).toBe('123')
 
     // Generar un click en el boton
     await form.trigger('submit')
