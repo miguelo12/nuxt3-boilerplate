@@ -73,7 +73,7 @@ if (import.meta.client) {
       </v-container>
     </template>
     <template #footer>
-      <NuxtLayout name="footer" />
+      <Footer />
     </template>
   </NuxtLayout>
 </template>

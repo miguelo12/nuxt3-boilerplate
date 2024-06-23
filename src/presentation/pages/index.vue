@@ -31,8 +31,7 @@ const items = [
 <template>
   <NuxtLayout>
     <template #header>
-      <NuxtLayout
-        name="header"
+      <Header
         :auth-store="authStore"
       />
     </template>
@@ -92,7 +91,7 @@ const items = [
       </v-container>
     </template>
     <template #footer>
-      <NuxtLayout name="footer" />
+      <Footer />
     </template>
   </NuxtLayout>
 </template>

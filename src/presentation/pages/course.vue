@@ -5,19 +5,18 @@ const authStore = useAuthStore()
 <template>
   <NuxtLayout>
     <template #header>
-      <NuxtLayout
-        name="header"
+      <Header
         :auth-store="authStore"
       />
     </template>
     <template #default>
-      <NuxtLayout name="breadcrumb" />
+      <Breadcrumb />
       <v-container class="pa-4 text-center">
         <DataTable title="Curso" />
       </v-container>
     </template>
     <template #footer>
-      <NuxtLayout name="footer" />
+      <Footer />
     </template>
   </NuxtLayout>
 </template>

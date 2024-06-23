@@ -1,5 +1,5 @@
-import 'reflect-metadata'
 import { Container } from 'inversify'
+import 'reflect-metadata'
 
 import AuthRepository from '@Data/repository/authRepository'
 import type { authRepositoryInterface } from '@Data/repository/interface/authRepositoryInterface'

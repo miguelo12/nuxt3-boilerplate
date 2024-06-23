@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+import 'reflect-metadata'
 
 const srcName: string = 'src'
 const srcProjectName: string = `${__dirname}/${srcName}`
@@ -17,6 +18,12 @@ export default defineNuxtConfig({
     public: {
       apiBaseUrl: 'http://localhost:5000',
     },
+  },
+  components: {
+    dirs: [
+      'components',
+      'section',
+    ],
   },
   imports: {
     dirs: [
@@ -85,7 +92,12 @@ export default defineNuxtConfig({
   typescript: {
     tsConfig: {
       compilerOptions: {
-        types: ['vitest/globals'],
+        types: [
+          'vitest/globals',
+          'reflect-metadata',
+        ],
+        experimentalDecorators: true,
+        emitDecoratorMetadata: true,
       },
     },
     typeCheck: false,
